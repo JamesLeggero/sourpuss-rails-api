@@ -4,6 +4,7 @@ class CreateGigs < ActiveRecord::Migration[6.0]
       t.boolean :hidden
       t.string :band
       t.string :venue
+      t.string :stream
       t.string :support
       t.date :date
       t.time :time
