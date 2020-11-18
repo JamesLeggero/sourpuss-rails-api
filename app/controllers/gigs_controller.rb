@@ -1,7 +1,18 @@
 class GigsController < ApplicationController
 
     def index
-        render json:  { status: 200, gigs: Gig.all }
+        gigs = Gig.all
+        render json:  { status: 200, gigs: gigs }
+    end
+
+    def create
+    gig = Gig.new(gig_params)
+
+        if gig.save
+            render json: { status: 201, gig: gig}
+        else
+            render json: { status: 422, gig: gig}
+        end
     end
 
     def show
@@ -9,6 +20,12 @@ class GigsController < ApplicationController
         gig = Gig.find(params[:id])
         render json: { status: 200, gig: gig }
     end
+
+    private
+
+        def gig_params
+            params.permit(:hidden, :band, :venue_stream, :v_s_link, :support, :date, :time)
+        end
 
 
 end
