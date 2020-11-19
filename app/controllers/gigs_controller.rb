@@ -6,12 +6,12 @@ class GigsController < ApplicationController
     end
 
     def create
-    gig = Gig.new(gig_params)
+    @gig = Gig.new(gig_params)
 
-        if gig.save
-            render json: { status: 201, gig: gig}
+        if @gig.save
+            render json: { status: 201, gig: @gig }
         else
-            render json: { status: 422, gig: gig}
+            render json: { status: 422, gig: @gig }
         end
     end
 
@@ -24,7 +24,7 @@ class GigsController < ApplicationController
     private
 
         def gig_params
-            params.permit(:hidden, :band, :venue_stream, :v_s_link, :support, :date, :time)
+            params.required(:gig).permit(:hidden, :band, :venue_stream, :v_s_link, :support, :date, :time)
         end
 
 
