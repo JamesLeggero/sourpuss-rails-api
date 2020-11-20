@@ -5,6 +5,12 @@ class GigsController < ApplicationController
         render json:  { status: 200, gigs: gigs }
     end
 
+    def destroy
+        gig = Gig.destroy(params[:id])
+        render json: { status: 204 }
+    end
+
+
     def create
     @gig = Gig.new(gig_params)
 
