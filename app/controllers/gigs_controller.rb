@@ -10,6 +10,12 @@ class GigsController < ApplicationController
         render json: { status: 204 }
     end
 
+    def update
+        gig = Gig.find(params[:id])
+        gig.update(gig_params)
+        render json: { gig: gig }
+
+    end
 
     def create
     @gig = Gig.new(gig_params)
